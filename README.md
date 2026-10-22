@@ -1,128 +1,258 @@
-[🇷🇺 Русский](README.ru.md) · [🇬🇧 English](README.en.md) · [🇪🇸 Español](README.md)
+[🇷🇺 Русский](README.ru.md) · [🇬🇧 English](README.md) · [🇪🇸 Español](README.es.md)
 
-# NewTab Dashboard
+# NewTab Dashboard — Custom Edition
 
-**NewTab Dashboard** reemplaza la nueva pestaña de Firefox con un dashboard personal, minimalista y completamente configurable. Todo desde el navegador, sin servidores, sin cuentas, sin API keys.
+**NewTab Dashboard — Custom Edition** is a modified version of NewTab Dashboard, a Firefox extension that replaces the default new tab page with a modern, minimalist, and highly customizable personal dashboard.
 
-Disponible en la **Firefox Add-ons Store**:
-**https://addons.mozilla.org/es-ES/firefox/addon/newtab-dashboard/**
+This edition introduces additional tools for network administration, system monitoring, and quick access to frequently used services while preserving the core functionality of the original project.
 
-![My Dashboard screenshot](images/screenshot1.png)
+**Current Version:** 1.0.2
 
----
+**Original Project:** [NewTab Dashboard on Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/newtab-dashboard/)
 
-## Qué incluye
+> **Note:** This is an independently modified version of the original project. The Firefox Add-ons link above points to the original extension, not this custom edition.
 
-El dashboard se divide en tres columnas:
-
-**Columna izquierda — Sidebar**
-- Reloj y fecha en tiempo real
-- Feeds RSS con tabs por fuente (Hacker News, The Verge, Ars Technica y cualquier otro feed)
-- Monitor de servicios via **Uptime Kuma** (estado global + grid de monitores)
-
-**Columna central — Main**
-- Barra de búsqueda con 8 motores configurables (Google, DuckDuckGo, Brave, Kagi, Perplexity…)
-- Links organizados en **Secciones → Grupos → Links** con iconos automáticos
-- Vídeos recientes de canales de YouTube (sin API key de Google)
-
-**Columna derecha — Panel**
-- Clima en tiempo real via Open-Meteo (sin API key)
-- Calendario mensual con navegación
-- Precios de criptomonedas en tiempo real via CoinGecko (sin API key)
-- Bloc de notas persistente
+![NewTab Dashboard Screenshot](images/screenshot1.png)
 
 ---
 
-## Características principales
+## Features
 
-- **Sin API keys** — Clima, crypto y vídeos de YouTube funcionan sin registro
-- **Firefox Sync** — La configuración se sincroniza entre dispositivos automáticamente
-- **Iconos automáticos** — Los links sugieren su icono desde Simple Icons al escribir el nombre
-- **Fondos** — URL de imagen, wallpaper diario de **Bing**, explorador de **Wallhaven** o gradientes predefinidos, con controles de opacidad, desenfoque, oscurecimiento y tono
-- **Widgets configurables** — Activa, desactiva, mueve entre barras y reordena los widgets del panel (reloj, feeds, clima, calendario, mercados, notas, Uptime Kuma, Proxmox, Docker, Pi-hole)
-- **Monitorización de tu homelab** — Estado de VMs de Proxmox, contenedores Docker (vía Portainer) y estadísticas de Pi-hole, con uso de CPU y RAM. Las credenciales solo se envían a tus propios servidores
-- **Import / Export** — Guarda y restaura toda tu configuración en un JSON
-- **Multiidioma** — Interfaz en Español, Inglés y Ruso
-- **Sin dependencias** — Vanilla JS, sin frameworks ni bundler
+### Left Column — Sidebar
 
----
+- Real-time clock and date.
+- Customizable RSS news feeds.
+- Separate tabs for individual RSS sources.
+- Service monitoring through Uptime Kuma.
+- Support for homelab monitoring widgets.
 
-## Instalación
+### Center Column — Main
 
-### Desde la store (recomendado)
+- Search bar with multiple configurable search engines.
+- Bookmarks organized into **Sections → Groups → Links**.
+- Automatic website icons.
+- Recent videos from subscribed YouTube channels.
+- **Quick Actions** widget for frequently accessed tools and services.
 
-Instala directamente desde la Firefox Add-ons Store:
-https://addons.mozilla.org/es-ES/firefox/addon/newtab-dashboard/
+### Right Column — Widgets
 
-### Modo desarrollador (desde el código fuente)
-
-1. Clona o descarga este repositorio.
-2. Abre Firefox y ve a `about:debugging`.
-3. Haz clic en **"Este Firefox"** → **"Cargar complemento temporal..."**.
-4. Selecciona el archivo `manifest.json` de la carpeta del proyecto.
-
-> Las extensiones temporales se desactivan al cerrar Firefox. Para una instalación permanente usa la store.
+- Real-time weather information powered by Open-Meteo.
+- Interactive monthly calendar.
+- Cryptocurrency prices powered by CoinGecko.
+- Persistent notes.
+- Configurable and rearrangeable widgets.
+- Additional system monitoring tools.
 
 ---
 
-## Archivos
+## Custom Edition Improvements
 
-```
+This version extends the original dashboard with several additional features.
+
+### Network Toolbox
+
+Integrated network diagnostic tools accessible directly from the dashboard.
+
+The Network Toolbox communicates with a locally hosted backend to perform supported network operations.
+
+### System Monitor
+
+A dedicated system monitoring widget that displays statistics collected from your local machine.
+
+**Default API endpoint:**
+
+`http://127.0.0.1:8765/stats`
+
+The System Monitor requires a separate local Python backend to provide real-time information.
+
+### Quick Actions
+
+A configurable widget that provides shortcuts to frequently used applications, websites, and services.
+
+Example shortcuts include GitHub, Proxmox, and SSH-related resources.
+
+### Improved RSS Feed Support
+
+The RSS widget has been updated to retrieve and parse RSS and Atom XML feeds directly, rather than depending on the external rss2json service.
+
+This removes the dependency on that third-party conversion API, although individual feeds may still be subject to browser access restrictions.
+
+### Improved Widget Layout
+
+The Quick Actions widget is positioned beneath the main bookmark sections in the center column, providing easier access without overcrowding the right sidebar.
+
+---
+
+## Main Capabilities
+
+- **No API keys required for core public services** — Weather, cryptocurrency prices, and YouTube videos use publicly available sources.
+- **Firefox extension storage** — Settings are stored using `browser.storage.sync`, with a `localStorage` fallback.
+- **Import and Export** — Save and restore your dashboard configuration using JSON files.
+- **Customizable appearance** — Wallpapers, gradients, blur, opacity, darkening, and themes.
+- **Configurable widgets** — Enable, disable, rearrange, and organize dashboard components.
+- **Homelab integration** — Support for Proxmox, Portainer, Pi-hole, and Uptime Kuma, depending on configuration.
+- **Multilingual interface** — English, Spanish, and Russian.
+- **Lightweight architecture** — Built with vanilla HTML, CSS, and JavaScript, without a frontend framework or bundler.
+
+---
+
+## Installation
+
+### Method 1 — Install the Signed Extension (Recommended)
+
+1. Open the **Releases** section of this repository.
+2. Download the latest Mozilla-signed `.xpi` file.
+3. Open Firefox.
+4. Navigate to `about:addons`.
+5. Click the settings gear icon.
+6. Select **Install Add-on From File…**
+7. Choose the downloaded `.xpi` file.
+8. Confirm the installation.
+
+> A Mozilla-signed `.xpi` is required for permanent installation in standard Firefox releases.
+
+### Method 2 — Install From Source (Developer Mode)
+
+1. Clone or download this repository.
+2. Open Firefox and navigate to `about:debugging`.
+3. Select **This Firefox**.
+4. Click **Load Temporary Add-on…**
+5. Select `manifest.json` from the project directory.
+
+The extension will be loaded temporarily for development and testing.
+
+> Temporary add-ons are unloaded when Firefox closes. Use the signed `.xpi` for permanent installation.
+
+---
+
+## System Requirements
+
+### Basic Dashboard
+
+- Mozilla Firefox or a compatible browser.
+- No additional software required for the core dashboard features.
+- Internet access for external services such as weather, news, cryptocurrency prices, and YouTube.
+
+### System Monitor
+
+The System Monitor requires a local backend service.
+
+The default endpoint is:
+
+`http://127.0.0.1:8765/stats`
+
+The backend can run as a user-level systemd service on supported Linux systems.
+
+### Network Toolbox
+
+The Network Toolbox requires a compatible local backend to execute network diagnostic operations.
+
+### Homelab Integrations
+
+Some widgets require access to external or self-hosted services, such as:
+
+- Proxmox VE
+- Portainer
+- Pi-hole
+- Uptime Kuma
+
+These integrations may require additional configuration, API credentials, or network access.
+
+---
+
+## Project Structure
+
+```text
 newtab-dashboard/
-├── manifest.json      — configuración de la extensión (Manifest v2)
-├── dashboard.html     — estructura del dashboard
-├── dashboard.css      — estilos (glassmorphism, variables CSS, wallpaper)
-├── dashboard.js       — toda la lógica (~2.300 líneas, Vanilla JS)
-├── background.js      — reservado para uso futuro
-├── icon.svg / icon48.png / icon128.png
-├── LICENSE            — licencia MIT
+├── manifest.json
+├── dashboard.html
+├── dashboard.css
+├── dashboard.js
+├── background.js
+├── icon.svg
+├── icon48.png
+├── icon128.png
+├── images/
+│   └── screenshot1.png
+├── LICENSE
 └── README.md
 ```
 
----
-
-## Personalización
-
-Toda la configuración se hace desde el botón **⚙** de la interfaz, sin tocar código:
-
-- Añadir / reordenar / eliminar secciones, grupos y links
-- Gestionar feeds RSS (con presets populares)
-- Añadir activos de crypto (con presets)
-- Añadir canales de YouTube por Channel ID o @handle
-- Cambiar el motor de búsqueda
-- Aplicar wallpaper (URL o gradiente) y ajustar sus efectos
-- Gestionar los widgets del panel: activarlos, moverlos entre barras (izquierda/derecha) y reordenarlos
-- Conectar servicios self-hosted: Proxmox (API Token), Docker vía Portainer (API Key) y Pi-hole v6
-- Cambiar el idioma
-- Exportar e importar la configuración completa
-- Consultar la información del proyecto, versión y licencia en la pestaña **Acerca de**
-
-Para cambiar la ciudad del clima, edita las coordenadas en `dashboard.js` (busca `open-meteo.com`).
+Additional files may be included for the custom monitoring and network diagnostic backends.
 
 ---
 
-## Tecnología
+## Customization
 
-| Capa | Detalle |
+All dashboard settings can be managed through the built-in **Settings (⚙)** interface.
+
+You can:
+
+- Add, edit, remove, and rearrange bookmark sections.
+- Organize links into groups.
+- Configure RSS news sources.
+- Add YouTube channels using channel IDs.
+- Select your preferred search engine.
+- Change wallpapers, gradients, and visual effects.
+- Enable, disable, and rearrange widgets.
+- Configure Quick Actions shortcuts.
+- Connect supported homelab services.
+- Change the interface language.
+- Export and import dashboard settings.
+- View extension information, version details, and licensing information.
+
+---
+
+## Technologies
+
+| Component | Technology |
 |---|---|
-| Almacenamiento | `browser.storage.sync` (Firefox Sync) con fallback a `localStorage` |
-| Clima | [Open-Meteo](https://open-meteo.com/) — gratuito, sin API key |
-| Crypto | [CoinGecko API](https://www.coingecko.com/en/api) — gratuito, sin API key |
-| YouTube | Feed Atom XML directo — sin Google API key |
-| RSS | Proxy CORS [rss2json](https://rss2json.com/) |
-| Iconos | [Simple Icons](https://simpleicons.org/) CDN + favicon como fallback |
-| Uptime | [Uptime Kuma](https://github.com/louislam/uptime-kuma) Status Page pública |
+| Frontend | HTML5, CSS3, Vanilla JavaScript |
+| Extension API | Firefox WebExtensions |
+| Storage | `browser.storage.sync` and `localStorage` |
+| Weather | [Open-Meteo](https://open-meteo.com/) |
+| Cryptocurrency | [CoinGecko](https://www.coingecko.com/en/api) |
+| YouTube | Atom XML feeds |
+| News | RSS and Atom XML feeds |
+| Icons | [Simple Icons](https://simpleicons.org/) and website favicons |
+| Service Monitoring | [Uptime Kuma](https://github.com/louislam/uptime-kuma) |
+| System Monitoring | Local Python backend |
+| Network Diagnostics | Local backend service |
 
 ---
 
-## Colaboradores
+## Contributing
 
-Gracias a quienes han contribuido — la lista completa está en [CONTRIBUTORS.md](CONTRIBUTORS.md).
+Contributions, suggestions, and bug reports are welcome.
 
-- **[@Nikitamce](https://github.com/Nikitamce)** — traducción al ruso e internacionalización (i18n).
+If you would like to improve the dashboard:
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes.
+4. Test the extension in Firefox.
+5. Submit a pull request describing your improvements.
+
+Please avoid committing personal configuration files, passwords, API tokens, or private network information.
 
 ---
 
-## Licencia
+## Credits
 
-[MIT](LICENSE) © Francisco Martínez — software libre y gratuito. Puedes usarlo, modificarlo y redistribuirlo sin restricciones, conservando el aviso de copyright.
+This project is based on **NewTab Dashboard**, originally developed by **Francisco Martínez**.
+
+Special thanks to the contributors of the original project, including [@Nikitamce](https://github.com/Nikitamce), for contributions to Russian translation and internationalization.
+
+This Custom Edition includes additional modifications and functionality and is not affiliated with the official Firefox Add-ons listing of the original project.
+
+---
+
+## License
+
+This project is distributed under the **MIT License**, subject to the terms and copyright notices of the original project.
+
+**Original Project:** © Francisco Martínez.
+
+Modifications to this edition are distributed under the applicable license terms.
+
+See [LICENSE](LICENSE) for details.
